@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\PublisherEventHandler;
+use App\Registers\PublisherValidatorsRegister;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Exception;
@@ -11,18 +12,14 @@ readonly class EventController
 {
     public function __construct(
         private PublisherEventHandler $eventHandler,
+        private PublisherValidatorsRegister $validatorsRegister,
     ) {}
     public function createEvent(Request $request): Response
     {
         $data = $request->getPayload()->all();
 
         try {
-            // @todo: add basic validators
-            if ($data['type'] === 'foul') {
-                if (!isset($data['match_id']) || !isset($data['team_id'])) {
-                    throw new \InvalidArgumentException('match_id and team_id are required for foul events');
-                }
-            }
+            $this->validatorsRegister->getValidatorByType($data['type'])->validate($data);
 
             $result = $this->eventHandler->handleEvent($data);
 

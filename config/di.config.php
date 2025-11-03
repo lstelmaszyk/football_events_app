@@ -2,7 +2,9 @@
 
 use App\FileStorage;
 use App\Queue\MessageQueueService;
+use App\Registers\PublisherValidatorsRegister;
 use App\StatisticsManager;
+use App\Validators\Publisher\FoulEventValidator;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Routing\RouteCollection;
@@ -23,4 +25,8 @@ return [
     MessageQueueService::class => DI\create()
         ->constructor(DI\get('queue_storage_path'), DI\get('queue_name')),
     Application::class => DI\create(),
+    PublisherValidatorsRegister::class => DI\create()
+        ->constructor([
+            FoulEventValidator::TYPE->value => DI\get(FoulEventValidator::class),
+        ]),
 ];
