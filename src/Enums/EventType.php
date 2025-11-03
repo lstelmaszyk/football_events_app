@@ -5,4 +5,5 @@ namespace App\Enums;
 enum EventType: string
 {
     case FOUL = 'foul';
+    case GOAL = 'goal';
 }

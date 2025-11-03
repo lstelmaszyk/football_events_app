@@ -5,6 +5,7 @@ use App\Queue\MessageQueueService;
 use App\Registers\PublisherValidatorsRegister;
 use App\StatisticsManager;
 use App\Validators\Publisher\FoulEventValidator;
+use App\Validators\Publisher\GoalEventValidator;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Routing\RouteCollection;
@@ -28,5 +29,6 @@ return [
     PublisherValidatorsRegister::class => DI\create()
         ->constructor([
             FoulEventValidator::TYPE->value => DI\get(FoulEventValidator::class),
+            GoalEventValidator::TYPE->value => DI\get(GoalEventValidator::class),
         ]),
 ];

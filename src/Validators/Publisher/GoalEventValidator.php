@@ -7,16 +7,16 @@ use App\Validators\AbstractEventValidator;
 use App\Validators\ValidatorInterface;
 use InvalidArgumentException;
 
-class FoulEventValidator extends AbstractEventValidator implements ValidatorInterface
+class GoalEventValidator extends AbstractEventValidator implements ValidatorInterface
 {
-    const TYPE = EventType::FOUL;
+    const TYPE = EventType::GOAL;
 
     public function validate(array $data): true
     {
         parent::validate($data);
 
-        if (!isset($data['player']) || !isset($data['affected_player'])) {
-            throw new InvalidArgumentException('player and affected_player are required for foul events');
+        if (!isset($data['scorer']) || !isset($data['assisting_player'])) {
+            throw new InvalidArgumentException('scorer and assisting_player are required for goal events');
         }
 
         return true;
