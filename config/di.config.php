@@ -9,17 +9,19 @@ use App\Validators\Publisher\GoalEventValidator;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Routing\RouteCollection;
+use Predis\Client as RedisClient;
 
 return [
     'event_storage_path' => __DIR__ . '/../storage/events.txt',
     'statistics_storage_path' => __DIR__ . '/../storage/statistics.txt',
     'queue_storage_path' => __DIR__ . '/../storage/queue',
     'queue_name' => 'event_queue',
+    'redis_config' => function (ContainerInterface $c) {
+        return  require __DIR__ . '/redis.config.php';
+    },
 
     FileStorage::class => DI\create()
         ->constructor(DI\get('event_storage_path')),
-    StatisticsManager::class => DI\create()
-        ->constructor(DI\get('statistics_storage_path')),
     RouteCollection::class => function (ContainerInterface $c) {
         return require __DIR__ . '/router.config.php';
     },
@@ -31,4 +33,5 @@ return [
             FoulEventValidator::TYPE->value => DI\get(FoulEventValidator::class),
             GoalEventValidator::TYPE->value => DI\get(GoalEventValidator::class),
         ]),
+    RedisClient::class => DI\create()->constructor(DI\get('redis_config')),
 ];

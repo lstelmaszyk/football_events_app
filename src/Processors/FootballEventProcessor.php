@@ -2,18 +2,21 @@
 
 namespace App\Processors;
 
-use App\StatisticsManager;
+use App\Infrastucture\Cache\EventStorageService;
+//use App\StatisticsManager;
 
 class FootballEventProcessor
 {
-    public function __construct(private readonly StatisticsManager $statisticsManager) {}
+    public function __construct(
+//        private readonly StatisticsManager $statisticsManager,
+        private readonly EventStorageService $eventStorageService,
+    ) {}
 
     public function process(mixed $data): void
     {
-        $this->statisticsManager->updateTeamStatistics(
+        $this->eventStorageService->saveMatchEvent(
             $data['match_id'],
-            $data['team_id'],
-            'fouls'
+            json_encode($data)
         );
     }
 }

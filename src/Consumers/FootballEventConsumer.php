@@ -12,6 +12,11 @@ class FootballEventConsumer
         private readonly FootballEventProcessor $processor,
     ) {}
 
+    /**
+     * @return string|null
+     *
+     * @throws \Exception
+     */
     public function consume(): string|null
     {
         $message = $this->messageQueueService->consumeMessage();
@@ -22,6 +27,7 @@ class FootballEventConsumer
                 $this->messageQueueService->acknowledgeMessage($message);
             } catch (\Exception $e) {
                 $this->messageQueueService->rejectMessage($message);
+                throw $e;
             }
         }
 
