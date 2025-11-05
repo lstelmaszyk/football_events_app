@@ -38,14 +38,30 @@ class StatisticsManager
                 $statistics[$matchId][$event['team_id']] = [];
             }
 
-            if (!isset($statistics[$matchId][$event['team_id']][$event['type']])) {
-                $statistics[$matchId][$event['team_id']][$event['type']] = 1;
+            $eventType = $this->keyTransform($event['type']);
+
+            if (!isset($statistics[$matchId][$event['team_id']][$eventType])) {
+                $statistics[$matchId][$event['team_id']][$eventType] = 1;
             } else {
-                $statistics[$matchId][$event['team_id']][$event['type']] += 1;
+                $statistics[$matchId][$event['team_id']][$eventType] += 1;
             }
 
         }
 
         return $statistics;
+    }
+
+    private function keyTransform(string $eventName): string
+    {
+        switch (true) {
+            case $eventName === 'goal':
+                $eventName = 'goals';
+                break;
+            case $eventName === 'foul':
+                $eventName = 'fouls';
+                break;
+        }
+
+        return $eventName;
     }
 }

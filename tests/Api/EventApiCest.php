@@ -13,6 +13,12 @@ class EventApiCest
         $I->deleteFile('storage/statistics.txt');
     }
 
+    public function _after(ApiTester $I)
+    {
+        $I->initRedisConnection(require __DIR__ . '/../../config/redis.config.php');
+        $I->flushAll();
+    }
+
     public function testFoulEvent(ApiTester $I)
     {
         $I->haveHttpHeader('Content-Type', 'application/json');
@@ -22,14 +28,15 @@ class EventApiCest
             'team_id' => 'arsenal',
             'match_id' => 'm1',
             'minute' => 45,
-            'second' => 34
+            'second' => 34,
+            'affected_player' => 'A. Kovalski'
         ]);
         
         $I->seeResponseCodeIs(201);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
             'status' => 'success',
-            'message' => 'Event saved successfully'
+            'message' => 'Event consumed to be processed'
         ]);
         $I->seeResponseJsonMatchesJsonPath('$.event.type', 'foul');
     }
@@ -48,7 +55,7 @@ class EventApiCest
         $I->seeResponseCodeIs(400);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
-            'error' => 'match_id and team_id are required for foul events'
+            'error' => 'match_id, team_id are required for events'
         ]);
     }
 
@@ -60,7 +67,7 @@ class EventApiCest
         $I->seeResponseCodeIs(400);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
-            'error' => 'Invalid JSON'
+            'error' => 'Could not decode request body.'
         ]);
     }
 
@@ -76,7 +83,7 @@ class EventApiCest
         $I->seeResponseCodeIs(400);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
-            'error' => 'Event type is required'
+            'error' => 'Unsupported event type or type is missing'
         ]);
     }
 }

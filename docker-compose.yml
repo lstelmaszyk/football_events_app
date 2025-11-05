@@ -10,6 +10,14 @@ services:
     volumes:
       - .:/app
     working_dir: /app
+    command: php -S 0.0.0.0:8000 -t public
+  app-consumer:
+    build: .
+    container_name: football_events_consumer_app
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: php bin/console.php consumer:events
   redis:
     image: "redis:alpine"
     container_name: football_events_redis

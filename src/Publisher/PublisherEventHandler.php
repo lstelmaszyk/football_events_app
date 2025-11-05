@@ -13,6 +13,7 @@ class PublisherEventHandler
 
     public function handleEvent(array $data): array
     {
+        $data['timestamp'] = time();
         $this->storage->save($data);
         $this->eventDataPublisher->sendEvent($data);
 

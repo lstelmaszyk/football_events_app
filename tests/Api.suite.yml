@@ -6,6 +6,7 @@ modules:
             depends: PhpBrowser
         - Asserts
         - Tests\Support\Helper\FileHelper
+        - Tests\Support\Helper\CacheHelper
     config:
         PhpBrowser:
             url: http://localhost:8000

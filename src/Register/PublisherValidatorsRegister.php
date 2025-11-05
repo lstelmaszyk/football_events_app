@@ -12,7 +12,7 @@ class PublisherValidatorsRegister
      */
     public function __construct(private readonly array $validators) {}
 
-    public function getValidatorByType(string $type): ValidatorInterface
+    public function getValidatorByType(string|null $type): ValidatorInterface
     {
         return $this->validators[$type] ?? new UnsupportedEventValidator();
     }

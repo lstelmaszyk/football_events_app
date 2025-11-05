@@ -16,10 +16,10 @@ readonly class EventController
     ) {}
     public function createEvent(Request $request): Response
     {
-        $data = $request->getPayload()->all();
-
         try {
-            $this->validatorsRegister->getValidatorByType($data['type'])->validate($data);
+            $data = $request->getPayload()->all();
+
+            $this->validatorsRegister->getValidatorByType($data['type'] ?? null)->validate($data);
 
             $result = $this->eventHandler->handleEvent($data);
 

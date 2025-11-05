@@ -23,6 +23,3 @@ RUN mkdir -p storage && chmod 777 storage
 
 # Expose port
 EXPOSE 8000
-
-# Start PHP built-in server
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]

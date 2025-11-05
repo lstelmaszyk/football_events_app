@@ -13,6 +13,6 @@ class UnsupportedEventValidator implements ValidatorInterface
      */
     public function validate(array $data): never
     {
-        throw new ValidationException('Unsupported event type');
+        throw new ValidationException('Unsupported event type or type is missing');
     }
 }

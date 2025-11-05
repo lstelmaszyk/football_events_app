@@ -13,6 +13,12 @@ class StatisticsApiCest
         $I->deleteFile('storage/statistics.txt');
     }
 
+    public function _after(ApiTester $I)
+    {
+        $I->initRedisConnection(require __DIR__ . '/../../config/redis.config.php');
+        $I->flushAll();
+    }
+
     public function testGetTeamStatistics(ApiTester $I)
     {
         // First, create some foul events
@@ -23,8 +29,10 @@ class StatisticsApiCest
             'team_id' => 'arsenal',
             'match_id' => 'm1',
             'minute' => 15,
-            'second' => 34
+            'second' => 34,
+            'affected_player' => 'A. Kovalski'
         ]);
+        $I->seeResponseCodeIs(201);
         
         $I->haveHttpHeader('Content-Type', 'application/json');
         $I->sendPOST('/event', [
@@ -33,9 +41,14 @@ class StatisticsApiCest
             'team_id' => 'arsenal',
             'match_id' => 'm1',
             'minute' => 30,
-            'second' => 33
+            'second' => 33,
+            'affected_player' => 'A. Kovalski'
         ]);
-        
+        $I->seeResponseCodeIs(201);
+
+        // Allow some time for asynchronous processing
+        sleep(1);
+
         // Now get team statistics
         $I->sendGET('/statistics?match_id=m1&team_id=arsenal');
         
@@ -60,8 +73,10 @@ class StatisticsApiCest
             'team_id' => 'arsenal',
             'match_id' => 'm1',
             'minute' => 15,
-            'second' => 34
+            'second' => 34,
+            'affected_player' => 'A. Kovalski'
         ]);
+        $I->seeResponseCodeIs(201);
         
         $I->haveHttpHeader('Content-Type', 'application/json');
         $I->sendPOST('/event', [
@@ -70,9 +85,14 @@ class StatisticsApiCest
             'team_id' => 'liverpool',
             'match_id' => 'm1',
             'minute' => 30,
-            'second' => 33
+            'second' => 33,
+            'affected_player' => 'A. Kovalski'
         ]);
-        
+        $I->seeResponseCodeIs(201);
+
+        // Allow some time for asynchronous processing
+        sleep(1);
+
         // Get all match statistics
         $I->sendGET('/statistics?match_id=m1');
         

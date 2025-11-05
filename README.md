@@ -7,26 +7,37 @@ Simple application for handling football events - recruitment task.
 The following business requirements must be met by the solution:
 
 ### Core business requirements
-- [ ] System accurately logs and updates statistics upon receiving a **goal** event, including details such as scorer, assisting player, team, minute, and match ID.
-- [ ] System accurately logs and updates records upon receiving a **foul** event, including details such as player at fault, affected player, team, match ID, and precise time of the foul.
+- [done] System accurately logs and updates statistics upon receiving a **goal** event, including details such as scorer, assisting player, team, minute, and match ID.
+- [done] System accurately logs and updates records upon receiving a **foul** event, including details such as player at fault, affected player, team, match ID, and precise time of the foul.
 ```
-- [ ] All event data is permanently stored and retrievable
-- [ ] Relevant statistics are calculated and maintained for both event types
-- [ ] Clients receive information about all events in real-time
+- [partially] All event data is permanently stored and retrievable
+- [done] Relevant statistics are calculated and maintained for both event types
+- [done as a pull request] Clients receive information about all events in real-time
 - [ ] Data integrity is maintained at all times
 - [ ] Historical data is preserved and accessible
-- [ ] System can handle high volume of events
+- [done] System can handle high volume of events
 
 ### Client communication requirements
 - [ ] All clients receive event notifications
-- [ ] Information is delivered in a timely manner
-- [ ] Communication is reliable and consistent
+- [done] Information is delivered in a timely manner
+- [partially] Communication is reliable and consistent
 
 ### Recruitment requirements
-- [ ] The solution should be provided as a GitHub repository with at least three meaningful commits
-- [ ] Some kind of abstraction is allowed to demonstrate the solution over a fully functioning application
+- [done] The solution should be provided as a GitHub repository with at least three meaningful commits
+- [done] Some kind of abstraction is allowed to demonstrate the solution over a fully functioning application
 - [ ] Try to devote no more than 3 hours to solving the problem - anything you don't have time to do can be written as a plan for further action
-- [ ] Try not to use AI tools. If you do - write down how you use it.
+- [partially] Try not to use AI tools. If you do - write down how you use it.
+  -> AI used mainly for "searching" information + quick solutions
+
+### Todo:
+ - event data are logged/stored to a file - add cache regeneration (+change storage to something more easier to manage)
+ - consumer - control (process limitation, restart, etc.)
+ - add configuration passed via environment variables
+ - add business logic for consumed events and statistics (events as objects, additional validation, etc.)
+ - add endpoints for historical data 
+ - improve logging and error handling
+ - add UTs
+ - and so on...
 
 ## Requirements
 
