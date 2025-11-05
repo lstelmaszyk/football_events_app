@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Registers;
+namespace App\Register;
 
-use App\Validators\UnsupportedEventValidator;
-use App\Validators\ValidatorInterface;
+use App\Validator\UnsupportedEventValidator;
+use App\Validator\ValidatorInterface;
 
 class PublisherValidatorsRegister
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Validators;
+namespace App\Validator;
 
 use InvalidArgumentException;
 

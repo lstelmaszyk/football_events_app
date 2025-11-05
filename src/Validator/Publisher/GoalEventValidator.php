@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Validators\Publisher;
+namespace App\Validator\Publisher;
 
-use App\Enums\EventType;
-use App\Validators\AbstractEventValidator;
-use App\Validators\ValidatorInterface;
+use App\Enum\EventType;
+use App\Validator\AbstractEventValidator;
+use App\Validator\ValidatorInterface;
 use InvalidArgumentException;
 
 class GoalEventValidator extends AbstractEventValidator implements ValidatorInterface

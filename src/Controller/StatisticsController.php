@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controller;
 
 use App\StatisticsManager;
 use Symfony\Component\HttpFoundation\Request;

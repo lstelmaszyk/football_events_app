@@ -1,7 +1,7 @@
 <?php
 
-use App\Controllers\EventController;
-use App\Controllers\StatisticsController;
+use App\Controller\EventController;
+use App\Controller\StatisticsController;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 

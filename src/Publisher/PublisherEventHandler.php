@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Publisher;
 
-use App\Publishers\EventDataPublisher;
+use App\Infrastucture\FileStorage\FileStorage;
 
 class PublisherEventHandler
 {

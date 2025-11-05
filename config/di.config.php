@@ -1,15 +1,14 @@
 <?php
 
-use App\FileStorage;
-use App\Queue\MessageQueueService;
-use App\Registers\PublisherValidatorsRegister;
-use App\StatisticsManager;
-use App\Validators\Publisher\FoulEventValidator;
-use App\Validators\Publisher\GoalEventValidator;
+use App\Infrastucture\FileStorage\FileStorage;
+use App\Infrastucture\Queue\MessageQueueService;
+use App\Register\PublisherValidatorsRegister;
+use App\Validator\Publisher\FoulEventValidator;
+use App\Validator\Publisher\GoalEventValidator;
+use Predis\Client as RedisClient;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Routing\RouteCollection;
-use Predis\Client as RedisClient;
 
 return [
     'event_storage_path' => __DIR__ . '/../storage/events.txt',

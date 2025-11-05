@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Infrastucture\FileStorage;
 
 class FileStorage
 {

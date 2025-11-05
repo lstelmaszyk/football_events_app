@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Processors;
+namespace App\Processor;
 
 use App\Infrastucture\Cache\EventStorageService;
 //use App\StatisticsManager;

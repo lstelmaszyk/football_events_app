@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Consumers;
+namespace App\Consumer;
 
-use App\Processors\FootballEventProcessor;
-use App\Queue\MessageQueueService;
+use App\Infrastucture\Queue\MessageQueueService;
+use App\Processor\FootballEventProcessor;
 
 class FootballEventConsumer
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Publishers;
+namespace App\Publisher;
 
-use App\Queue\MessageQueueService;
+use App\Infrastucture\Queue\MessageQueueService;
 
 class EventDataPublisher
 {

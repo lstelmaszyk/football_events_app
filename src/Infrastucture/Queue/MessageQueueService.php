@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Queue;
+namespace App\Infrastucture\Queue;
 
 
 use Enqueue\Fs\FsConnectionFactory;

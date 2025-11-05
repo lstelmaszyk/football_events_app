@@ -3,7 +3,7 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-use App\Commands\EventConsumerCommand;
+use App\Command\EventConsumerCommand;
 use DI\ContainerBuilder;
 use Symfony\Component\Console\Application;
 

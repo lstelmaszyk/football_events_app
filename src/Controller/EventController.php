@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controller;
 
-use App\PublisherEventHandler;
-use App\Registers\PublisherValidatorsRegister;
+use App\Publisher\PublisherEventHandler;
+use App\Register\PublisherValidatorsRegister;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Exception;
 
 readonly class EventController
 {

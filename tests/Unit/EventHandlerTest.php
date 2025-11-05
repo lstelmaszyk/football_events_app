@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\PublisherEventHandler;
-use App\FileStorage;
+use App\Infrastucture\FileStorage\FileStorage;
+use App\Publisher\PublisherEventHandler;
 use App\StatisticsManager;
 use PHPUnit\Framework\TestCase;
 

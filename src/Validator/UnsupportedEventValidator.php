@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Validators;
+namespace App\Validator;
 
-use App\Exceptions\ValidationException;
+use App\Exception\ValidationException;
 
 class UnsupportedEventValidator implements ValidatorInterface
 {
